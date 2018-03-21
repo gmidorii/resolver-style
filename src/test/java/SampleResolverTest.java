@@ -16,9 +16,7 @@ public class SampleResolverTest {
 
     @RunWith(Theories.class)
     public static class ResolverLocal {
-
         private static final String FORMAT = "yyyy-MM-dd HH:mm";
-
         private static final DateTimeFormatter actualFormatter = DateTimeFormatter.ofPattern(FORMAT);
 
         @DataPoints
@@ -42,7 +40,7 @@ public class SampleResolverTest {
         };
 
         @Theory
-        public void formatLocal_LENIENT_正常系(Fixture f) throws Exception {
+        public void formatLocal_LENIENT(Fixture f) throws Exception {
             SampleResolver r = new SampleResolver(FORMAT, ResolverStyle.LENIENT);
 
             LocalDateTime actual = r.formatLocal(f.input);
@@ -51,6 +49,7 @@ public class SampleResolverTest {
 
     }
 
+
     static class Fixture {
         String input;
         String expected;
@@ -58,14 +57,6 @@ public class SampleResolverTest {
         public Fixture(String input, String expected) {
             this.input = input;
             this.expected = expected;
-        }
-
-        public String getInput() {
-            return input;
-        }
-
-        public String getExpected() {
-            return expected;
         }
 
         @Override
